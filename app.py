@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Check if the environment variables are set
-groq_api_key = os.getenv("GROQ_API_KEY")
-hf_token = os.getenv("HF_TOKEN")
+groq_api_key = "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"
+hf_token = "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"
 
 if hf_token is None:
     st.error("HF_TOKEN environment variable is not set. Please set it in your environment or .env file.")
