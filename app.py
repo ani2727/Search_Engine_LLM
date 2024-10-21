@@ -7,10 +7,24 @@ from langchain.callbacks import StreamlitCallbackHandler
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
+# Load environment variables from a .env file
 load_dotenv()
 
-os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
-os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN")
+# Check if the environment variables are set
+groq_api_key = os.getenv("GROQ_API_KEY")
+hf_token = os.getenv("HF_TOKEN")
+
+if hf_token is None:
+    st.error("HF_TOKEN environment variable is not set. Please set it in your environment or .env file.")
+    st.stop()
+
+if groq_api_key is None:
+    st.error("GROQ_API_KEY environment variable is not set. Please set it in your environment or .env file.")
+    st.stop()
+
+# Set environment variables
+os.environ["GROQ_API_KEY"] = groq_api_key
+os.environ["HF_TOKEN"] = hf_token
 os.environ["PROJECT_NAME"] = "Langchain Project"
 
 # Initialize Arxiv and Wikipedia tools
